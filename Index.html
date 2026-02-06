@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GOD MOD MENU V3.0 - BYPASS SAFARI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+
+        * { box-sizing: border-box; user-select: none; outline: none; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            margin: 0; padding: 0;
+            background: #000;
+            height: 100vh; width: 100vw;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; font-family: 'Orbitron', sans-serif;
+            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://i.pinimg.com/originals/2d/e8/82/2de882cd4f4346914619d081b899d453.jpg');
+            background-size: cover; background-position: center;
+        }
+
+        @media screen and (orientation: portrait) {
+            body { transform: rotate(90deg); transform-origin: bottom left; position: absolute; top: -100vw; left: 0; height: 100vw; width: 100vh; }
+        }
+
+        .wrapper {
+            position: relative; width: 850px; height: 520px; border-radius: 12px;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%; animation: glowing 20s linear infinite;
+            padding: 3px; box-shadow: 0 0 60px rgba(188, 19, 254, 0.3); z-index: 1000;
+            transform-origin: center center;
+        }
+
+        .menu-frame {
+            width: 100%; height: 100%; background: #08080c; border-radius: 10px;
+            display: flex; position: relative; overflow: hidden;
+        }
+
+        .grid-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(188, 19, 254, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(188, 19, 254, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px; z-index: 0;
+        }
+
+        .sidebar {
+            width: 240px; background: rgba(10, 10, 15, 0.98); border-right: 2px solid #222;
+            z-index: 2; display: flex; flex-direction: column;
+            clip-path: polygon(0 0, 100% 0, 100% 94%, 88% 100%, 0 100%);
+        }
+
+        .header-logo {
+            height: 110px; display: flex; align-items: center; justify-content: center; flex-direction: column;
+            border-bottom: 2px solid #1a1a25; background: linear-gradient(180deg, transparent, rgba(188, 19, 254, 0.1));
+        }
+
+        .header-logo h1 { margin: 0; color: #fff; font-size: 30px; text-shadow: 0 0 15px #bc13fe; font-style: italic; }
+        .header-logo span { font-size: 9px; color: #00ffea; letter-spacing: 4px; margin-top: 4px; font-weight: bold; }
+
+        .nav-item {
+            padding: 20px 30px; color: #555; cursor: pointer; font-size: 15px; font-weight: 700;
+            transition: 0.3s; position: relative; display: flex; align-items: center;
+        }
+
+        .nav-item.active {
+            color: #bc13fe; background: linear-gradient(90deg, rgba(188, 19, 254, 0.1), transparent);
+            border-left: 5px solid #bc13fe; text-shadow: 0 0 10px rgba(188, 19, 254, 0.8);
+        }
+
+        .main-content { flex: 1; z-index: 2; display: flex; flex-direction: column; }
+        .top-bar {
+            height: 55px; display: flex; justify-content: space-between; align-items: center;
+            padding: 0 25px; border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.4); cursor: move;
+        }
+
+        .tab-container { padding: 25px; flex: 1; overflow-y: auto; }
+        .tab-page { display: none; animation: fadeIn 0.4s ease; }
+        .tab-page.active { display: block; }
+
+        .feature-box {
+            background: rgba(25, 25, 35, 0.7); border: 1px solid rgba(255, 255, 255, 0.03);
+            margin-bottom: 12px; padding: 15px 20px; display: flex; align-items: center;
+            justify-content: space-between; position: relative; overflow: hidden;
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+        }
+
+        .feat-title { color: #eee; font-size: 14px; font-weight: 600; }
+        .feat-desc { font-size: 9px; color: #666; font-family: 'Share Tech Mono'; margin-top: 3px; }
+
+        .btn-launch {
+            width: 100%; margin-top: 10px; padding: 18px;
+            background: linear-gradient(45deg, #bc13fe, #7a00ff);
+            border: none; color: #fff; font-family: 'Orbitron'; font-weight: 900;
+            font-size: 18px; cursor: pointer; position: relative; overflow: hidden;
+            clip-path: polygon(15% 0, 100% 0, 100% 70%, 85% 100%, 0 100%, 0 30%);
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.5);
+            transition: 0.3s;
+        }
+
+        .btn-launch:active { transform: scale(0.95); filter: brightness(1.2); }
+
+        .btn-launch::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: rgba(255, 255, 255, 0.1); transform: rotate(45deg);
+            animation: radar 3s infinite linear;
+        }
+
+        @keyframes radar { from { top: -150%; } to { top: 150%; } }
+
+        .cyber-switch {
+            position: relative; width: 55px; height: 26px; appearance: none;
+            background: #151515; border: 1px solid #333; cursor: pointer;
+            clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px); transition: 0.3s;
+        }
+        .cyber-switch:checked { background: #1a0b2e; border-color: #bc13fe; box-shadow: 0 0 10px rgba(188, 19, 254, 0.5) inset; }
+        .cyber-switch::after {
+            content: ''; position: absolute; top: 3px; left: 4px; width: 18px; height: 18px;
+            background: #444; transition: 0.3s; clip-path: polygon(4px 0, 100% 0, 100% 100%, 0 100%, 0 4px);
+        }
+        .cyber-switch:checked::after { left: 30px; background: #fff; box-shadow: 0 0 10px #bc13fe; }
+        .cyber-switch:checked::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 40%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: laser 0.7s infinite linear;
+        }
+
+        @keyframes laser { 0% { left: -100%; } 100% { left: 200%; } }
+        @keyframes glowing { 0% { background-position: 0 0; } 50% { background-position: 400% 0; } 100% { background-position: 0 0; } }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        .fs-btn { position: absolute; top: 15px; right: 15px; color: #555; background: none; border: none; font-size: 20px; cursor: pointer; z-index: 9999; }
+    </style>
+</head>
+<body>
+
+    <button class="fs-btn" onclick="toggleFS()"><i class="fas fa-expand"></i></button>
+
+    <div class="wrapper" id="menu">
+        <div class="menu-frame">
+            <div class="grid-bg"></div>
+            
+            <div class="sidebar">
+                <div class="header-logo"><h1>TANSANG<span>GOD</span></h1><span>AIM BYPASS</span></div>
+                <div class="nav-item active" onclick="tab('cb', this)"><i class="fas fa-skull"></i> COMBAT</div>
+                <div class="nav-item" onclick="tab('vs', this)"><i class="fas fa-eye"></i> VISUALS</div>
+                <div class="nav-item" onclick="tab('cfg', this)"><i class="fas fa-cog"></i> CONFIG</div>
+            </div>
+
+            <div class="main-content">
+                <div class="top-bar" id="drag">
+                    <div style="color: #fff; font-size: 12px; font-weight: bold;"><span style="color: #00ffea;">●</span> SYSTEM ONLINE</div>
+                    <div style="color: #bc13fe; font-size: 11px;">ANTIBAN ACTIVE</div>
+                </div>
+
+                <div class="tab-container">
+                    <div id="cb" class="tab-page active">
+                        <div class="feature-box"><div class="feat-title">Aimbot <div class="feat-desc">Khóa mục tiêu</div></div><input type="checkbox" class="cyber-switch" checked></div>
+                        <div class="feature-box"><div class="feat-title">Headshot <div class="feat-desc">Tăng Tỉ Lệ Vô Đầu</div></div><input type="checkbox" class="cyber-switch"></div>
+                        <div class="feature-box"><div class="feat-title">No Recoil <div class="feat-desc">Súng không giật</div></div><input type="checkbox" class="cyber-switch" checked></div>
+                    </div>
+
+                    <div id="vs" class="tab-page">
+                        <div class="feature-box"><div class="feat-title">Antiban <div class="feat-desc">Chống Ban Acc 100%</div></div><input type="checkbox" class="cyber-switch" checked></div>
+                        <div class="feature-box"><div class="feat-title">AntiBlacklis <div class="feat-desc">Chống Danh Sách Đen</div></div><input type="checkbox" class="cyber-switch"></div>
+                        <div class="feature-box"><div class="feat-title">Anti-Repost <div class="feat-desc">Xoá Tố Cáo</div></div><input type="checkbox" class="cyber-switch" checked></div>
+                    </div>
+
+                    <div id="cfg" class="tab-page">
+                        <div class="feature-box"><div class="feat-title">Stream Proof <div class="feat-desc">Ẩn menu khi đang Live/Quay màn hình</div></div><input type="checkbox" class="cyber-switch" checked></div>
+                        <div style="margin-top: 20px; text-align: center;">
+                            <p style="color: #555; font-size: 10px; margin-bottom: 10px;">SAU KHI BẬT CÁC CHỨC NĂNG, ẤN NÚT DƯỚI ĐỂ VÀO GAME</p>
+                            <button class="btn-launch" onclick="launchFF()">
+                                <i class="fas fa-rocket"></i> OPEN FREE FIRE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function launchFF() {
+
+            const btn = document.querySelector('.btn-launch');
+            btn.innerHTML = "<i class='fas fa-sync fa-spin'></i> INJECTING...";
+            
+            setTimeout(() => {
+                btn.innerHTML = "<i class='fas fa-check'></i> OPENING...";
+                window.location.href = "freefire://";
+                
+                setTimeout(() => {
+                    btn.innerHTML = "<i class='fas fa-rocket'></i> OPEN FREE FIRE";
+                }, 3000);
+            }, 1500);
+        }
+
+        function tab(id, el) {
+            document.querySelectorAll('.tab-page').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            el.classList.add('active');
+        }
+
+        function res() {
+            const w = document.getElementById('menu'), ww = window.innerWidth, wh = window.innerHeight;
+            let s = Math.min(ww/850, wh/520);
+            w.style.transform = `scale(${s > 1 ? 1 : s * 0.95})`;
+        }
+        window.onresize = res; window.onload = res;
+
+        const m = document.getElementById("menu"), h = document.getElementById("drag");
+        let dr = false, sx, sy, il, it;
+        h.onmousedown = (e) => { dr = true; sx = e.clientX; sy = e.clientY; il = m.offsetLeft; it = m.offsetTop; m.style.transition = "none"; };
+        document.onmousemove = (e) => { if(!dr) return; m.style.left = (il + e.clientX - sx) + "px"; m.style.top = (it + e.clientY - sy) + "px"; };
+        document.onmouseup = () => dr = false;
+
+        function toggleFS() { if(!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+    </script>
+</body>
+</html>
